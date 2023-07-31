@@ -1,6 +1,6 @@
 resource "aws_security_group" "main" {
-  name        = local.alb_security_group_names[var.subnets_name]
-  description = local.alb_security_group_names[var.subnets_name]
+  name        = lookup(local.alb_security_group_names, var.subnets_name)
+  description = lookup(local.alb_security_group_names, var.subnets_name)
   vpc_id      = var.vpc_id
 
   ingress {
