@@ -1,6 +1,6 @@
 resource "aws_security_group" "main" {
-  name        = "${var.env}-alb-security-groups"
-  description = "${var.env}-alb-security-group"
+  name        = local.alb_security_group_names[var.subnets_name]
+  description = local.alb_security_group_names[var.subnets_name]
   vpc_id      = var.vpc_id
 
   ingress {
@@ -21,7 +21,7 @@ resource "aws_security_group" "main" {
   }
   tags = merge(
     local.common_tags,
-    { Name = "${var.env}-alb-security-group" }
+    { Name = local.alb_security_group_names[var.subnets_name] }
   )
 }
 
