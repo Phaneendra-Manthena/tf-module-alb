@@ -8,9 +8,3 @@ locals {
 }
 
 
-locals {
-  alb_security_group_names = {
-    public = "${var.env}-alb-security-group-public"
-    private = "${var.env}-alb-security-group-private"
-  }
-}

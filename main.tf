@@ -1,8 +1,7 @@
 resource "aws_security_group" "main" {
-  name        = lookup(local.alb_security_group_names, var.subnets_name)
-  description = lookup(local.alb_security_group_names, var.subnets_name)
+  name        = "${var.env}-alb-${var.subnets_name}-security-group"
+  description = "${var.env}-alb-${var.subnets_name}-security-group"
   vpc_id      = var.vpc_id
-
   ingress {
     description      = "HTTP"
     from_port        = 80
@@ -21,7 +20,7 @@ resource "aws_security_group" "main" {
   }
   tags = merge(
     local.common_tags,
-    { Name = local.alb_security_group_names[var.subnets_name] }
+    { Name = "${var.env}-alb-security-group" }
   )
 }
 
